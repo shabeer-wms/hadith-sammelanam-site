@@ -614,6 +614,12 @@
     if (attempted && e.target.dataset.rule) validateField(e.target);
   });
 
+  // English zone name for a unit, e.g. "EDATHANATTUKARA"
+  function zoneOf(unit) {
+    const group = UNIT_GROUPS.find(g => g.units.includes(unit));
+    return group ? group.zone.split(' / ')[0] : '';
+  }
+
   function collect() {
     return {
       name: document.getElementById('name').value.trim(),
@@ -621,6 +627,7 @@
       sex: document.getElementById('sex').value,
       member: document.getElementById('member').value,
       unit: document.getElementById('unit').value.trim(),
+      zone: zoneOf(document.getElementById('unit').value.trim()),
       family: [...membersEl.querySelectorAll('.member-row')].map(row => ({
         name: row.querySelector('input').value.trim(),
         sex: row.querySelector('select[data-rule="sex"]').value,
