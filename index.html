@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ഹദീസ് സമ്മേളനം 2026 · പാലക്കാട് ജില്ല</title>
+<meta name="description" content="പാലക്കാട് ജില്ലാ ഹദീസ് സമ്മേളനം. 2026 നവംബർ 20, വെള്ളി, വൈകിട്ട് 4 മണി. മുഹമ്മദ് ബാഗ് ഇവന്റ് സെന്റർ, പാലക്കാട്.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400..800&family=Inter:wght@400..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef0f3;
+    --surface: #ffffff;
+    --ink: #1c222c;
+    --ink-soft: #667085;
+    --line: #dfe3ea;
+    --dark: #262b33;
+    --navy: #0d2d57;
+    --lilac: #e7dcf8;
+    --butter: #f4efb4;
+    --sky: #d3ebf8;
+    --mint: #dcefc9;
+    --danger: #b3342d;
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --shadow: 0 1px 2px rgba(20, 30, 45, 0.04), 0 8px 24px rgba(20, 30, 45, 0.05);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', 'Anek Malayalam', system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  /* Header */
+  .site-header { background: var(--navy); color: #fff; }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 88px; }
+  .logo { display: block; line-height: 0; }
+  .logo img { display: block; width: 220px; height: auto; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 26px;
+    border: 0; border-radius: 999px;
+    background: var(--dark); color: #fff;
+    font: inherit; font-weight: 600; font-size: 1rem;
+    text-decoration: none; cursor: pointer;
+    box-shadow: 0 10px 24px rgba(28, 34, 44, 0.18);
+    transition: background 0.2s ease;
+  }
+  .btn:hover { background: #3a414c; }
+  .btn-small { min-height: 44px; padding: 0 20px; font-size: 0.95rem; box-shadow: none; }
+  .btn:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 3px solid #8b7fd6; outline-offset: 3px;
+  }
+  .btn:disabled { opacity: 0.6; cursor: wait; }
+  .btn-block { width: 100%; }
+
+  /* Hero: navy band with white dome below, as on the poster */
+  .hero { background: var(--navy); color: #fff; text-align: center; padding-top: 64px; }
+  .hero-inner { padding-bottom: 56px; }
+  .hero-title { display: block; width: min(440px, 78%); height: auto; margin: 0 auto 8px; }
+  .hero-band {
+    background: #fff; color: var(--navy);
+    border-radius: 50% 50% 0 0 / 44px 44px 0 0;
+    padding: 52px 0 64px;
+  }
+  .band-grid { display: grid; gap: 36px; justify-items: center; }
+  .when-year { margin: 0; font-size: 1.1rem; font-weight: 600; }
+  .when-day { margin: 6px 0 4px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; }
+  .when-num {
+    background: var(--navy); color: #fff; border-radius: 6px;
+    padding: 2px 16px; font-size: clamp(2.6rem, 8vw, 4rem); font-weight: 800; line-height: 1.2;
+  }
+  .when-weekday { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; }
+  .when-time { margin: 0; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 800; letter-spacing: 0.01em; }
+  .where-name { margin: 0; font-size: 1.3rem; font-weight: 700; line-height: 1.4; }
+  .where-city { margin: 4px 0 24px; font-size: 1.2rem; font-weight: 700; }
+  .band-grid .btn { background: var(--navy); }
+
+  /* Bento grid */
+  .bento { display: grid; gap: 16px; padding-top: 8px; padding-bottom: 56px; }
+  .tile { background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 28px; }
+  .tile h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 8px; line-height: 1.4; }
+  .tile p { margin: 0; color: var(--ink-soft); }
+  .tile-lilac { background: var(--lilac); box-shadow: none; }
+  .tile-butter { background: var(--butter); box-shadow: none; }
+  .tile-lilac p, .tile-butter p { color: var(--ink); }
+
+  .timer {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 28px 20px 24px; text-align: center;
+  }
+  .timer-label { grid-column: 1 / -1; margin: 0 0 16px; font-size: 0.95rem; font-weight: 600; color: var(--ink-soft); }
+  .unit { padding: 0 8px; }
+  .unit + .unit { border-left: 1px solid var(--line); }
+  .unit strong {
+    display: block; font-size: clamp(2.2rem, 7vw, 3.4rem); font-weight: 800;
+    line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  }
+  .unit span { display: block; margin-top: 10px; font-size: 0.85rem; color: var(--ink-soft); }
+  .countdown-done { font-size: 1.2rem; font-weight: 700; margin: 0; background: var(--butter); box-shadow: none; grid-column: 1 / -1; }
+
+  .verse-text { font-size: 1.12rem; font-weight: 500; line-height: 1.95; margin: 0 0 14px; color: var(--ink); }
+  .verse-cite { font-size: 0.92rem; color: var(--ink); opacity: 0.75; }
+  .tile-cta { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+  .tile-cta h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.01em; }
+
+  /* Registration form (main section) */
+  .register { padding-bottom: 64px; }
+  .register-head { text-align: center; margin-bottom: 24px; }
+  .register-head h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .register-head p { margin: 0; color: var(--ink-soft); }
+
+  .form-card {
+    background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    padding: 32px 24px; max-width: 880px; margin: 0 auto;
+  }
+  .error-summary {
+    background: #fbe9e7; color: #7d211b; border-radius: var(--radius-md);
+    padding: 16px 20px; margin: 0 0 24px;
+  }
+  .error-summary h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
+  .error-summary ul { margin: 0; padding-left: 18px; }
+  .error-summary a { color: inherit; font-weight: 600; }
+
+  .group { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .group:last-of-type { border-bottom: 0; margin-bottom: 24px; padding-bottom: 0; }
+  .group h3 { font-size: 1.2rem; font-weight: 700; margin: 0 0 4px; }
+  .group > p { margin: 0 0 18px; color: var(--ink-soft); font-size: 0.95rem; }
+
+  .grid-2 { display: grid; gap: 0 16px; }
+  .field { margin-bottom: 18px; min-width: 0; }
+  label { display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 8px; }
+  input, select {
+    width: 100%; min-height: 52px; padding: 12px 18px;
+    border: 1px solid var(--line); border-radius: 999px;
+    background: #f7f8fa; color: var(--ink);
+    font: inherit; font-size: 1rem;
+  }
+  select {
+    appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23262b33' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 18px center;
+  }
+  input:focus, select:focus { background-color: #fff; border-color: #b9b2e3; }
+  input::placeholder { color: #98a1ae; }
+  input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #c2413a; background-color: #fff6f5; }
+  .error-text { display: block; color: var(--danger); font-size: 0.86rem; margin: 6px 0 0 18px; min-height: 0; }
+  .error-text:empty { display: none; }
+
+  .members { display: grid; gap: 14px; margin-bottom: 16px; }
+  .member-row {
+    display: grid; gap: 0 12px; align-items: start;
+    padding: 18px; border-radius: var(--radius-md); background: #f7f8fa;
+  }
+  .member-row .field { margin-bottom: 0; }
+  .member-row .field + .field { margin-top: 12px; }
+  .remove {
+    width: 44px; height: 44px; border: 0; border-radius: 50%;
+    background: #fbe3e1; color: var(--danger); font-size: 1.3rem; line-height: 1;
+    cursor: pointer; justify-self: end; grid-row: 1; grid-column: 2;
+  }
+  .btn-add {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px;
+    border: 1.5px solid var(--dark); border-radius: 999px; background: #fff; color: var(--dark);
+    font: inherit; font-weight: 600; cursor: pointer;
+  }
+  .btn-add:hover { background: #f2f3f6; }
+
+  .form-message { margin: 16px 0 0; padding: 12px 18px; border-radius: var(--radius-md); background: #fbe9e7; color: #9b2c25; display: none; }
+  .form-message.show { display: block; }
+
+  .success { display: none; background: var(--mint); border-radius: var(--radius-lg); padding: 32px 28px; max-width: 880px; margin: 0 auto; text-align: center; }
+  .success.show { display: block; }
+  .success h2 { font-size: 1.5rem; font-weight: 800; margin: 0 0 8px; }
+  .success p { margin: 0; }
+
+  footer { padding: 0 0 40px; color: var(--ink-soft); font-size: 0.92rem; text-align: center; }
+  footer p { margin: 0; }
+
+  @media (min-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .member-row { grid-template-columns: 1fr 1fr; }
+    .member-row .field:first-child { grid-column: 1 / -1; }
+    .member-row .remove { grid-row: auto; grid-column: auto; align-self: end; }
+  }
+
+  @media (min-width: 760px) {
+    .hero { padding-top: 88px; }
+    .hero-inner { padding-bottom: 64px; }
+    .hero-band { padding: 64px 0 72px; }
+    .band-grid { grid-template-columns: 1fr 1fr; justify-items: start; text-align: left; }
+    .bento { grid-template-columns: repeat(12, 1fr); }
+    .tile-cta { grid-column: span 12; }
+    .verse { grid-column: span 12; }
+    .tile { padding: 32px; }
+    .form-card { padding: 40px; }
+    .member-row { grid-template-columns: 2fr 1fr 1fr auto; }
+    .member-row .field:first-child { grid-column: auto; }
+    .member-row .remove { grid-row: auto; grid-column: auto; align-self: end; margin-bottom: 4px; }
+  }
+
+  @media (max-width: 759px) {
+    .timer { padding: 22px 12px 20px; }
+    .unit { padding: 0 4px; }
+    .tile { padding: 24px; }
+  }
+
+  @media (max-width: 599px) {
+    .logo img { width: 150px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Wisdom Youth">
+      <img src="logo.png" alt="Wisdom Youth · നിത്യ പ്രസക്തം പ്രവാചകൻ (ﷺ)" width="402" height="123">
+    </a>
+    <a class="btn btn-small" href="#register">രജിസ്റ്റർ ചെയ്യുക</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <h1 class="visually-hidden">പാലക്കാട് ജില്ല ഹദീസ് സമ്മേളനം</h1>
+      <img class="hero-title" src="title.png" alt="പാലക്കാട് ജില്ല · ഹദീസ് സമ്മേളനം" width="490" height="357">
+    </div>
+    <div class="hero-band">
+      <div class="wrap band-grid">
+        <div class="when">
+          <p class="when-year">2026 നവംബർ</p>
+          <p class="when-day"><span class="when-num">20</span><span class="when-weekday">വെള്ളി</span></p>
+          <p class="when-time">04:00 PM</p>
+        </div>
+        <div class="where">
+          <p class="where-name">മുഹമ്മദ് ബാഗ് ഇവന്റ് സെന്റർ</p>
+          <p class="where-city">പാലക്കാട്</p>
+          <a class="btn" href="#register">രജിസ്റ്റർ ചെയ്യുക</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap bento">
+    <div class="tile timer" role="timer" aria-live="off">
+      <p class="timer-label">സമ്മേളനത്തിന് ബാക്കി</p>
+      <div class="unit"><strong id="cd-days">00</strong><span>ദിവസം</span></div>
+      <div class="unit"><strong id="cd-hours">00</strong><span>മണിക്കൂർ</span></div>
+      <div class="unit"><strong id="cd-mins">00</strong><span>മിനിറ്റ്</span></div>
+      <div class="unit"><strong id="cd-secs">00</strong><span>സെക്കൻഡ്</span></div>
+    </div>
+    <p class="tile countdown-done" id="cd-done" hidden>സമ്മേളനം ആരംഭിച്ചു.</p>
+
+    <div class="tile tile-cta tile-butter">
+      <div>
+        <h2>രജിസ്റ്റർ ചെയ്യുന്നതിന് മുമ്പ്</h2>
+        <p>താഴെയുള്ള വചനം വായിച്ച ശേഷം രജിസ്റ്റർ ചെയ്യുക.</p>
+      </div>
+      <div>
+        <a class="btn" href="#register">രജിസ്റ്റർ ചെയ്യാൻ തുടരുക</a>
+      </div>
+    </div>
+
+    <blockquote class="tile tile-lilac verse" id="before-register" style="margin: 0;">
+      <p class="verse-text">തനിക്ക് സന്‍മാര്‍ഗം വ്യക്തമായിക്കഴിഞ്ഞ ശേഷവും ആരെങ്കിലും (അല്ലാഹുവിൻ്റെ) ദൂതനുമായി എതിര്‍ത്ത് നില്‍ക്കുകയും, സത്യവിശ്വാസികളുടെതല്ലാത്ത മാര്‍ഗം പിന്തുടരുകയും ചെയ്യുന്ന പക്ഷം അവന്‍ തിരിഞ്ഞ വഴിക്ക് തന്നെ നാം അവനെ തിരിച്ചുവിടുന്നതും, നരകത്തിലിട്ട് നാമവനെ കരിക്കുന്നതുമാണ്‌. അതെത്ര മോശമായ പര്യവസാനം!</p>
+      <cite class="verse-cite">(4:115)</cite>
+    </blockquote>
+  </div>
+
+  <section class="wrap register" id="register" aria-labelledby="register-title">
+    <div class="register-head">
+      <h2 id="register-title">രജിസ്ട്രേഷൻ</h2>
+      <p>നിങ്ങളുടെയും കുടുംബാംഗങ്ങളുടെയും വിവരങ്ങൾ നൽകുക.</p>
+    </div>
+
+    <form class="form-card" id="reg-form" novalidate>
+      <div class="error-summary" id="error-summary" tabindex="-1" role="alert" hidden>
+        <h3>ഈ വിവരങ്ങൾ ശരിയാക്കുക</h3>
+        <ul id="error-list"></ul>
+      </div>
+
+      <div class="group">
+        <h3>രജിസ്റ്റർ ചെയ്യുന്നയാൾ</h3>
+        <div class="grid-2">
+          <div class="field">
+            <label for="name">പേര്</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="പൂർണ്ണമായ പേര്" data-rule="name">
+            <span class="error-text" id="name-error"></span>
+          </div>
+          <div class="field">
+            <label for="phone">ഫോൺ നമ്പർ</label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" placeholder="10 അക്ക നമ്പർ" data-rule="phone">
+            <span class="error-text" id="phone-error"></span>
+          </div>
+          <div class="field">
+            <label for="sex">ലിംഗം</label>
+            <select id="sex" name="sex" data-rule="sex">
+              <option value="">തിരഞ്ഞെടുക്കുക</option>
+              <option value="പുരുഷൻ">പുരുഷൻ</option>
+              <option value="സ്ത്രീ">സ്ത്രീ</option>
+            </select>
+            <span class="error-text" id="sex-error"></span>
+          </div>
+          <div class="field">
+            <label for="member">സംഘടനാ അംഗമാണോ?</label>
+            <select id="member" name="member" data-rule="member">
+              <option value="">തിരഞ്ഞെടുക്കുക</option>
+              <option value="അതെ">അതെ</option>
+              <option value="അല്ല">അല്ല</option>
+            </select>
+            <span class="error-text" id="member-error"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="unit">യൂണിറ്റ് / അടുത്തുള്ള സ്ഥലം</label>
+          <input id="unit" name="unit" type="text" placeholder="യൂണിറ്റിന്റെ പേര് നൽകുക" data-rule="unit">
+          <span class="error-text" id="unit-error"></span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>കുടുംബാംഗങ്ങൾ</h3>
+        <p>നിങ്ങളോടൊപ്പം രജിസ്റ്റർ ചെയ്യുന്നവരെ ചേർക്കുക.</p>
+        <div class="members" id="members"></div>
+        <button type="button" class="btn-add" id="add-member">+ അംഗത്തെ ചേർക്കുക</button>
+      </div>
+
+      <button class="btn btn-block" type="submit" id="submit-btn">രജിസ്ട്രേഷൻ സമർപ്പിക്കുക</button>
+      <p class="form-message" id="form-message" role="alert"></p>
+    </form>
+
+    <div class="success" id="success" role="status" tabindex="-1">
+      <h2>രജിസ്ട്രേഷൻ ലഭിച്ചു</h2>
+      <p>നന്ദി. നവംബർ 20-ന് കാണാം.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Wisdom Islamic Youth Organization · Palakkad District Committee</p>
+  </div>
+</footer>
+
+<script>
+  const CONFIG = {
+    eventStart: '2026-11-20T16:00:00+05:30',
+    // Paste the Apps Script web app URL here (see Code.gs). Until then, submit is disabled.
+    scriptUrl: 'https://script.google.com/macros/s/AKfycbwUa0VLvse0ahhm5QKoEU92FuyT0sK0oAL4doVQ2w37XrZcMhNo8wSpbyRkBuE_XuFiuA/exec'
+  };
+
+  // Countdown
+  const target = new Date(CONFIG.eventStart).getTime();
+  const els = {
+    days: document.getElementById('cd-days'),
+    hours: document.getElementById('cd-hours'),
+    mins: document.getElementById('cd-mins'),
+    secs: document.getElementById('cd-secs')
+  };
+  const doneEl = document.getElementById('cd-done');
+  const countTiles = document.querySelectorAll('.timer');
+  const pad = n => String(n).padStart(2, '0');
+
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      countTiles.forEach(t => t.hidden = true);
+      doneEl.hidden = false;
+      clearInterval(timer);
+      return;
+    }
+    const s = Math.floor(diff / 1000);
+    els.days.textContent = pad(Math.floor(s / 86400));
+    els.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+    els.mins.textContent = pad(Math.floor((s % 3600) / 60));
+    els.secs.textContent = pad(s % 60);
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  // Form
+  const form = document.getElementById('reg-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const message = document.getElementById('form-message');
+  const success = document.getElementById('success');
+  const membersEl = document.getElementById('members');
+  const summary = document.getElementById('error-summary');
+  const summaryList = document.getElementById('error-list');
+
+  const RULES = {
+    name: { ok: v => v.trim() !== '', msg: 'പേര് നൽകുക' },
+    phone: { ok: v => /^\d{10}$/.test(v.trim()), msg: '10 അക്ക ഫോൺ നമ്പർ നൽകുക' },
+    sex: { ok: v => v !== '', msg: 'ലിംഗം തിരഞ്ഞെടുക്കുക' },
+    member: { ok: v => v !== '', msg: 'തിരഞ്ഞെടുക്കുക' },
+    unit: { ok: v => v.trim() !== '', msg: 'യൂണിറ്റ് നൽകുക' }
+  };
+
+  const SEX_OPTIONS = '<option value="">തിരഞ്ഞെടുക്കുക</option><option value="പുരുഷൻ">പുരുഷൻ</option><option value="സ്ത്രീ">സ്ത്രീ</option>';
+  const MEMBER_OPTIONS = '<option value="">തിരഞ്ഞെടുക്കുക</option><option value="അതെ">അതെ</option><option value="അല്ല">അല്ല</option>';
+  let rowCount = 0;
+  let attempted = false;
+
+  function addMemberRow() {
+    const n = ++rowCount;
+    const row = document.createElement('div');
+    row.className = 'member-row';
+    row.innerHTML = `
+      <div class="field">
+        <label for="m${n}-name">പേര്</label>
+        <input id="m${n}-name" type="text" placeholder="പൂർണ്ണമായ പേര്" data-rule="name">
+        <span class="error-text" id="m${n}-name-error"></span>
+      </div>
+      <div class="field">
+        <label for="m${n}-sex">ലിംഗം</label>
+        <select id="m${n}-sex" data-rule="sex">${SEX_OPTIONS}</select>
+        <span class="error-text" id="m${n}-sex-error"></span>
+      </div>
+      <div class="field">
+        <label for="m${n}-member">സംഘടനാ അംഗമാണോ?</label>
+        <select id="m${n}-member" data-rule="member">${MEMBER_OPTIONS}</select>
+        <span class="error-text" id="m${n}-member-error"></span>
+      </div>
+      <button type="button" class="remove" aria-label="ഈ അംഗത്തെ നീക്കം ചെയ്യുക">×</button>`;
+    membersEl.appendChild(row);
+    row.querySelector('input').focus();
+  }
+
+  document.getElementById('add-member').addEventListener('click', addMemberRow);
+  membersEl.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove')) e.target.closest('.member-row').remove();
+  });
+
+  function validateField(input) {
+    const rule = RULES[input.dataset.rule];
+    const bad = !rule.ok(input.value);
+    const errEl = document.getElementById(input.id + '-error');
+    input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    if (bad) input.setAttribute('aria-describedby', errEl.id);
+    else input.removeAttribute('aria-describedby');
+    errEl.textContent = bad ? rule.msg : '';
+    return !bad;
+  }
+
+  function showSummary(invalid) {
+    summaryList.innerHTML = '';
+    invalid.forEach(input => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      const label = form.querySelector(`label[for="${input.id}"]`).textContent;
+      a.href = '#' + input.id;
+      a.textContent = `${label}: ${RULES[input.dataset.rule].msg}`;
+      li.appendChild(a);
+      summaryList.appendChild(li);
+    });
+    summary.hidden = false;
+    summary.focus();
+  }
+
+  function hideSummary() {
+    summary.hidden = true;
+    summaryList.innerHTML = '';
+  }
+
+  // Phone: digits only as the user types
+  document.getElementById('phone').addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '');
+  });
+
+  // After the first failed submit, re-check each field as it changes
+  form.addEventListener('input', (e) => {
+    if (attempted && e.target.dataset.rule) validateField(e.target);
+  });
+  form.addEventListener('change', (e) => {
+    if (attempted && e.target.dataset.rule) validateField(e.target);
+  });
+
+  function collect() {
+    return {
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      sex: document.getElementById('sex').value,
+      member: document.getElementById('member').value,
+      unit: document.getElementById('unit').value.trim(),
+      family: [...membersEl.querySelectorAll('.member-row')].map(row => ({
+        name: row.querySelector('input').value.trim(),
+        sex: row.querySelector('select[data-rule="sex"]').value,
+        member: row.querySelector('select[data-rule="member"]').value
+      }))
+    };
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    attempted = true;
+    message.classList.remove('show');
+
+    const invalid = [...form.querySelectorAll('[data-rule]')].filter(input => !validateField(input));
+    if (invalid.length) {
+      showSummary(invalid);
+      return;
+    }
+    hideSummary();
+
+    if (CONFIG.scriptUrl.startsWith('PASTE')) {
+      message.textContent = 'രജിസ്ട്രേഷൻ ബന്ധിപ്പിച്ചിട്ടില്ല.';
+      message.classList.add('show');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'അയക്കുന്നു...';
+    try {
+      // text/plain avoids a CORS preflight, which Apps Script cannot answer.
+      const res = await fetch(CONFIG.scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(collect())
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'failed');
+      form.hidden = true;
+      success.classList.add('show');
+      success.focus();
+    } catch (err) {
+      message.textContent = 'അയക്കാൻ കഴിഞ്ഞില്ല. ഇന്റർനെറ്റ് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.';
+      message.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'രജിസ്ട്രേഷൻ സമർപ്പിക്കുക';
+    }
+  });
+</script>
+</body>
+</html>
