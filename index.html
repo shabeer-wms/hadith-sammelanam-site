@@ -165,17 +165,29 @@
   .error-text { display: block; color: var(--danger); font-size: 0.86rem; margin: 6px 0 0 18px; min-height: 0; }
   .error-text:empty { display: none; }
 
-  .members { display: grid; gap: 14px; margin-bottom: 16px; }
-  .member-row {
-    display: grid; gap: 0 12px; align-items: start;
-    padding: 18px; border-radius: var(--radius-md); background: #f7f8fa;
+  .combo { position: relative; }
+  .combo-list {
+    position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 6px);
+    max-height: 300px; overflow-y: auto; margin: 0; padding: 8px 0; list-style: none;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md);
+    box-shadow: 0 16px 40px rgba(20, 30, 45, 0.14);
   }
-  .member-row .field { margin-bottom: 0; }
-  .member-row .field + .field { margin-top: 12px; }
+  .combo-group { padding: 10px 18px 4px; font-size: 0.82rem; color: var(--ink-soft); }
+  .combo-option { min-height: 44px; display: flex; align-items: center; padding: 0 18px; cursor: pointer; }
+  .combo-option[aria-selected="true"] { background: #f1eefb; }
+  .combo-empty { padding: 12px 18px; color: var(--ink-soft); }
+
+  .members { display: grid; gap: 14px; margin-bottom: 16px; }
+  .member-row { padding: 18px; border-radius: var(--radius-md); background: #f7f8fa; }
+  .m-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .m-head label { margin: 0; }
+  .m-top .field { margin-bottom: 0; }
+  .m-grid { display: grid; gap: 12px; }
+  .m-grid .field { margin-bottom: 0; }
   .remove {
-    width: 44px; height: 44px; border: 0; border-radius: 50%;
+    flex: none; width: 44px; height: 44px; border: 0; border-radius: 50%;
     background: #fbe3e1; color: var(--danger); font-size: 1.3rem; line-height: 1;
-    cursor: pointer; justify-self: end; grid-row: 1; grid-column: 2;
+    cursor: pointer;
   }
   .btn-add {
     display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px;
@@ -197,9 +209,7 @@
 
   @media (min-width: 600px) {
     .grid-2 { grid-template-columns: 1fr 1fr; }
-    .member-row { grid-template-columns: 1fr 1fr; }
-    .member-row .field:first-child { grid-column: 1 / -1; }
-    .member-row .remove { grid-row: auto; grid-column: auto; align-self: end; }
+    .m-grid { grid-template-columns: 1fr 1fr; }
   }
 
   @media (min-width: 760px) {
@@ -212,9 +222,6 @@
     .verse { grid-column: span 12; }
     .tile { padding: 32px; }
     .form-card { padding: 40px; }
-    .member-row { grid-template-columns: 2fr 1fr 1fr auto; }
-    .member-row .field:first-child { grid-column: auto; }
-    .member-row .remove { grid-row: auto; grid-column: auto; align-self: end; margin-bottom: 4px; }
   }
 
   @media (max-width: 759px) {
@@ -317,7 +324,7 @@
             <span class="error-text" id="phone-error"></span>
           </div>
           <div class="field">
-            <label for="sex">ലിംഗം</label>
+            <label for="sex">ആൺ / പെൺ</label>
             <select id="sex" name="sex" data-rule="sex">
               <option value="">തിരഞ്ഞെടുക്കുക</option>
               <option value="പുരുഷൻ">പുരുഷൻ</option>
@@ -337,7 +344,10 @@
         </div>
         <div class="field">
           <label for="unit">യൂണിറ്റ് / അടുത്തുള്ള സ്ഥലം</label>
-          <input id="unit" name="unit" type="text" placeholder="യൂണിറ്റിന്റെ പേര് നൽകുക" data-rule="unit">
+          <div class="combo" id="unit-combo">
+            <input id="unit" name="unit" type="text" role="combobox" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="unit-list" placeholder="തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ തിരയുക" data-rule="unit">
+            <ul id="unit-list" class="combo-list" role="listbox" aria-label="യൂണിറ്റുകൾ" hidden></ul>
+          </div>
           <span class="error-text" id="unit-error"></span>
         </div>
       </div>
@@ -372,6 +382,22 @@
     // Paste the Apps Script web app URL here (see Code.gs). Until then, submit is disabled.
     scriptUrl: 'https://script.google.com/macros/s/AKfycbwUa0VLvse0ahhm5QKoEU92FuyT0sK0oAL4doVQ2w37XrZcMhNo8wSpbyRkBuE_XuFiuA/exec'
   };
+
+  // Unit dropdown data: one entry per zone, from the Pkd Mandalam Level Form.
+  const UNIT_GROUPS = [
+    { zone: 'EDATHANATTUKARA / എടത്തനാട്ടുകര', units: ['AMBALAPPARA', 'ANAYAMKODE', 'ANDIKKUND', 'CHERIPARAMBU', 'DARUL QURAN', 'KALAMADAM', 'KAPPUPARAMBA', 'KARUVARATTA', 'MUNDAKKUNNU', 'PADIKKAPADAM', 'UPPUKULAM', 'VELLIYANCHERI'] },
+    { zone: 'ALANALLUR / അലനല്ലൂർ', units: ['ALANALLUR', 'CHIRATTAKULAM', 'KARA', 'KODIYAMKUNNU', 'KULAPPARAMBA', 'MURIYAMKANNI', 'PALAKKAZHI', 'POOKADAMCHERRY', 'THADIYAMPARAMBU', 'THIRUVIZHAMKUNNU', 'VETTATHUR'] },
+    { zone: 'MANNARKKAD / മണ്ണാർക്കാട്', units: ['ARIYOOR', 'CHANGALEERI', 'ELUBULASSERY', 'KODAKKAD', 'KACHERIPARAMBU', 'KARIMBUZHA', 'KOMBAM', 'KUNTHIPUZHA', 'MANALADI', 'MANNARKKAD', 'NATTUKKAL', 'NELLIPUZHA', 'PALLIKKUNNU', 'PULLISSERY', 'SREEKRISHNAPURAM', 'THENKARA'] },
+    { zone: 'THACHAMPARA / തച്ചമ്പാറ', units: ['CHIRAKKALPADI', 'CHOORIYOD', 'KALLADIKOD', 'KANHIRAPPUZHA', 'KOTTIYOD', 'THACHAMPARA', 'VAZAMPURAM'] },
+    { zone: 'OLAVAKKOD / ഒലവക്കോട്', units: ['KONGAD', 'MUNDOOR', 'MUTTIKULANGARA', 'OLAVAKKOD', 'PANNIYAMPADAM', 'PARALI', 'POOCHIRA', 'VAZHUKKAPPARA', 'VELIKKAD'] },
+    { zone: 'PALAKKAD / പാലക്കാട്', units: ['AALAKKAPPARAMB', 'EDATHARA', 'KODUNTHIRAPULLY', 'KURISAMKULAM', 'MATHUR', 'MEPPARAMB', 'PALAKKAD TOWN', 'PATTANISTREET', 'PERUNGOTUKURSSI', 'PIRAYIRI,CHUNGAM', 'PODIPPARA', 'PUDUPALLI STREET', 'VENNAKARA', 'WALAYAR'] },
+    { zone: 'OTTAPALAM / ഒറ്റപ്പാലം', units: ['CHERUPULASSERY', 'CHUNANGAD', 'KADAMBAZHIPURAM', 'KOTHAKURSHI', 'MALAPPURAM CHUNANGAD', 'OTTAPALAM', 'PATHAMKULAM', 'PATTHIRIPPALA', 'THRIKKADEERI', 'VAROD'] },
+    { zone: 'PATTAMBI / പട്ടാമ്പി', units: ['KARAKKAD', 'KARUVANPADI', 'NJANGATTIRI', 'PALLIPPURAM', 'PATTAMBI', 'PERUMUDIYUR', 'THEKKUM MURI', 'VALLAPUZHA'] },
+    { zone: 'KOPPAM / കൊപ്പം', units: ['AMAYUR', 'KARINGANAD', 'KOPPAM', 'MAPPATTUKARA', 'MULAYANKAVU', 'NADUVATTAM', 'THIRUVEGAPPURA', 'VILATHUR'] },
+    { zone: 'CHITTUR / ചിറ്റൂർ', units: ['KARIPPODE', 'KINASERI', 'KIZHAKKETHALA', 'KODUVAYUR', 'PITTUPEEDIKA', 'PUDUNAGARAM', 'THENKURUSSI', 'VANDITHAVALAM'] },
+    { zone: 'ALATHUR / ആലത്തൂർ', units: ['ALATHUR', 'CHITHALI', 'KAVASERI', 'MUDAPPALLUR', 'PAZHAYANNUR', 'PUDUKODE'] }
+  ];
+  const ALL_UNITS = UNIT_GROUPS.flatMap(g => g.units);
 
   // Countdown
   const target = new Date(CONFIG.eventStart).getTime();
@@ -414,9 +440,9 @@
   const RULES = {
     name: { ok: v => v.trim() !== '', msg: 'പേര് നൽകുക' },
     phone: { ok: v => /^\d{10}$/.test(v.trim()), msg: '10 അക്ക ഫോൺ നമ്പർ നൽകുക' },
-    sex: { ok: v => v !== '', msg: 'ലിംഗം തിരഞ്ഞെടുക്കുക' },
+    sex: { ok: v => v !== '', msg: 'ആൺ / പെൺ തിരഞ്ഞെടുക്കുക' },
     member: { ok: v => v !== '', msg: 'തിരഞ്ഞെടുക്കുക' },
-    unit: { ok: v => v.trim() !== '', msg: 'യൂണിറ്റ് നൽകുക' }
+    unit: { ok: v => ALL_UNITS.includes(v.trim()), msg: 'പട്ടികയിൽ നിന്ന് യൂണിറ്റ് തിരഞ്ഞെടുക്കുക' }
   };
 
   const SEX_OPTIONS = '<option value="">തിരഞ്ഞെടുക്കുക</option><option value="പുരുഷൻ">പുരുഷൻ</option><option value="സ്ത്രീ">സ്ത്രീ</option>';
@@ -429,22 +455,28 @@
     const row = document.createElement('div');
     row.className = 'member-row';
     row.innerHTML = `
-      <div class="field">
-        <label for="m${n}-name">പേര്</label>
-        <input id="m${n}-name" type="text" placeholder="പൂർണ്ണമായ പേര്" data-rule="name">
-        <span class="error-text" id="m${n}-name-error"></span>
+      <div class="m-top">
+        <div class="m-head">
+          <label for="m${n}-name">പേര്</label>
+          <button type="button" class="remove" aria-label="ഈ അംഗത്തെ നീക്കം ചെയ്യുക">×</button>
+        </div>
+        <div class="field">
+          <input id="m${n}-name" type="text" placeholder="പൂർണ്ണമായ പേര്" data-rule="name">
+          <span class="error-text" id="m${n}-name-error"></span>
+        </div>
       </div>
-      <div class="field">
-        <label for="m${n}-sex">ലിംഗം</label>
-        <select id="m${n}-sex" data-rule="sex">${SEX_OPTIONS}</select>
-        <span class="error-text" id="m${n}-sex-error"></span>
-      </div>
-      <div class="field">
-        <label for="m${n}-member">സംഘടനാ അംഗമാണോ?</label>
-        <select id="m${n}-member" data-rule="member">${MEMBER_OPTIONS}</select>
-        <span class="error-text" id="m${n}-member-error"></span>
-      </div>
-      <button type="button" class="remove" aria-label="ഈ അംഗത്തെ നീക്കം ചെയ്യുക">×</button>`;
+      <div class="m-grid">
+        <div class="field">
+          <label for="m${n}-sex">ആൺ / പെൺ</label>
+          <select id="m${n}-sex" data-rule="sex">${SEX_OPTIONS}</select>
+          <span class="error-text" id="m${n}-sex-error"></span>
+        </div>
+        <div class="field">
+          <label for="m${n}-member">സംഘടനാ അംഗമാണോ?</label>
+          <select id="m${n}-member" data-rule="member">${MEMBER_OPTIONS}</select>
+          <span class="error-text" id="m${n}-member-error"></span>
+        </div>
+      </div>`;
     membersEl.appendChild(row);
     row.querySelector('input').focus();
   }
@@ -484,6 +516,90 @@
     summary.hidden = true;
     summaryList.innerHTML = '';
   }
+
+  // Unit combobox: search box with a zone-grouped list
+  const unitInput = document.getElementById('unit');
+  const unitList = document.getElementById('unit-list');
+
+  function renderUnits(query) {
+    const q = query.trim().toLowerCase();
+    unitList.innerHTML = '';
+    let count = 0;
+    UNIT_GROUPS.forEach(group => {
+      const matches = group.units.filter(u => !q || u.toLowerCase().includes(q));
+      if (!matches.length) return;
+      const head = document.createElement('li');
+      head.className = 'combo-group';
+      head.setAttribute('role', 'presentation');
+      head.textContent = group.zone;
+      unitList.appendChild(head);
+      matches.forEach(u => {
+        const li = document.createElement('li');
+        li.className = 'combo-option';
+        li.id = 'unit-opt-' + count++;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', 'false');
+        li.dataset.value = u;
+        li.textContent = u;
+        unitList.appendChild(li);
+      });
+    });
+    if (!count) {
+      const empty = document.createElement('li');
+      empty.className = 'combo-empty';
+      empty.setAttribute('role', 'presentation');
+      empty.textContent = 'യൂണിറ്റ് കണ്ടെത്തിയില്ല';
+      unitList.appendChild(empty);
+    }
+  }
+
+  function unitOptions() { return [...unitList.querySelectorAll('.combo-option')]; }
+
+  function openUnits() {
+    renderUnits(unitInput.value);
+    unitList.hidden = false;
+    unitInput.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeUnits() {
+    unitList.hidden = true;
+    unitInput.setAttribute('aria-expanded', 'false');
+    unitInput.removeAttribute('aria-activedescendant');
+  }
+
+  function moveUnit(step) {
+    const opts = unitOptions();
+    if (!opts.length) return;
+    const current = opts.findIndex(o => o.getAttribute('aria-selected') === 'true');
+    const next = (current + step + opts.length) % opts.length;
+    opts.forEach((o, i) => o.setAttribute('aria-selected', i === next ? 'true' : 'false'));
+    unitInput.setAttribute('aria-activedescendant', opts[next].id);
+    opts[next].scrollIntoView({ block: 'nearest' });
+  }
+
+  function pickUnit(name) {
+    unitInput.value = name;
+    closeUnits();
+    validateField(unitInput);
+  }
+
+  unitInput.addEventListener('focus', openUnits);
+  unitInput.addEventListener('input', openUnits);
+  unitInput.addEventListener('blur', closeUnits);
+  unitInput.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (unitList.hidden) openUnits(); moveUnit(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); moveUnit(-1); }
+    else if (e.key === 'Enter' && !unitList.hidden) {
+      const active = unitOptions().find(o => o.getAttribute('aria-selected') === 'true');
+      if (active) { e.preventDefault(); pickUnit(active.dataset.value); }
+    }
+    else if (e.key === 'Escape') closeUnits();
+  });
+  // mousedown runs before blur, so the click lands before the list closes
+  unitList.addEventListener('mousedown', (e) => {
+    const li = e.target.closest('.combo-option');
+    if (li) { e.preventDefault(); pickUnit(li.dataset.value); }
+  });
 
   // Phone: digits only as the user types
   document.getElementById('phone').addEventListener('input', (e) => {
