@@ -200,6 +200,22 @@
       </div>
 
       <div class="group">
+        <h2>അമീർ</h2>
+        <div class="grid-2">
+          <div class="field">
+            <label for="amir-name">അമീറിന്റെ പേര്</label>
+            <input id="amir-name" name="amirName" type="text" autocomplete="off" placeholder="പൂർണ്ണമായ പേര്" data-rule="amirName">
+            <span class="error-text" id="amir-name-error"></span>
+          </div>
+          <div class="field">
+            <label for="amir-phone">അമീറിന്റെ ഫോൺ നമ്പർ</label>
+            <input id="amir-phone" name="amirPhone" type="tel" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="10 അക്ക നമ്പർ" data-rule="amirPhone">
+            <span class="error-text" id="amir-phone-error"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
         <h2>വാഹനം</h2>
         <div class="grid-2">
           <div class="field">
@@ -275,6 +291,8 @@
     name: { ok: v => v.trim() !== '', msg: 'പേര് നൽകുക' },
     phone: { ok: v => /^\d{10}$/.test(v.trim()), msg: '10 അക്ക ഫോൺ നമ്പർ നൽകുക' },
     unit: { ok: v => UNIT_GROUPS.some(g => g.units.includes(v)), msg: 'യൂണിറ്റ് തിരഞ്ഞെടുക്കുക' },
+    amirName: { ok: v => v.trim() !== '', msg: 'അമീറിന്റെ പേര് നൽകുക' },
+    amirPhone: { ok: v => /^\d{10}$/.test(v.trim()), msg: 'അമീറിന്റെ 10 അക്ക ഫോൺ നമ്പർ നൽകുക' },
     vehicleType: { ok: v => v !== '', msg: 'വാഹനത്തിന്റെ തരം തിരഞ്ഞെടുക്കുക' },
     vehicleNumber: { ok: v => v.trim() !== '', msg: 'വാഹന നമ്പർ നൽകുക' },
     seats: { ok: v => /^\d{1,3}$/.test(v.trim()) && Number(v) >= 1 && Number(v) <= 100, msg: 'സീറ്റുകളുടെ എണ്ണം നൽകുക (1–100)' },
@@ -293,7 +311,7 @@
   }
 
   // Phone and seats accept digits only
-  ['phone', 'seats'].forEach(id => {
+  ['phone', 'amir-phone', 'seats'].forEach(id => {
     document.getElementById(id).addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/\D/g, '');
     });
@@ -324,6 +342,8 @@
           type: 'vehicle',
           name: document.getElementById('name').value.trim(),
           phone: document.getElementById('phone').value.trim(),
+          amirName: document.getElementById('amir-name').value.trim(),
+          amirPhone: document.getElementById('amir-phone').value.trim(),
           zone: zoneOf(unit),
           unit,
           vehicleType: document.getElementById('vehicle-type').value,
